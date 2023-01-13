@@ -21,16 +21,18 @@
         <hr>
         <div class="row mb-3"><label for="" class="col-form-label-sm text-end col-2">Email</label><input type="email" name="" id="" class="col form-control"></div>
         <hr> -->
-        <form action="">
+        <form method="post" class="needs-validation" novalidate>
             <h2 class="fs-1">Endereço</h2>
             <hr>
             <div class="row mb-3">
                 <div class="col-7">
-                    <label for="logradouro" class="form-label">Logradouro</label><input type="text" class="form-control" id="logradouro">
+                    <label for="logradouro" class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" id="logradouro" required>
+                    <p class="invalid-feedback">Você deve informar o logradouro.</p>
                 </div>
                 <div class="col-2">
                     <label for="número" class="form-label">Número</label>
-                    <input id="number" type="number" class="form-control">
+                    <input id="number" type="number" class="form-control" required>
                 </div>
                 <div class="col-3">
                     <label for="complemento" class="form-label">Complemento</label>
@@ -40,17 +42,17 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <label for="bairro" class="form-label">Bairro</label>
-                    <input type="text" id="bairro" class="form-control">
+                    <input type="text" id="bairro" class="form-control" required>
                 </div>
                 <div class="col-6">
                     <label for="cidade" class="form-label">Cidade</label>
-                    <input type="text" id="cidade" class="form-control">
+                    <input type="text" id="cidade" class="form-control" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select name="" id="" class="form-select">
+                    <select name="" id="" class="form-select" required>
                         <option value="" class="invisible" selected></option>
                         <option value="">Estado 1</option>
                         <option value="">Estado 2</option>
@@ -82,11 +84,30 @@
                 </div>
                 <div class="col-6">
                     <label for="cep" class="form-label">CEP</label>
-                    <input type="text" id="cep" class="form-control">
+                    <input type="text" id="cep" class="form-control"  required>
                 </div>
+            </div>
+            <div class="col-12 form-check mb-3">
+                <input type="checkbox" name="" id="termos" class="form-check-input" required>
+                <label for="termos" class="form-check-label">Concordo com os termos e condições</label>
             </div>
             <button class="btn btn-success" type="submit">Cadastrar</button>
         </form>
     </div>
+    <script>
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 </body>
 </html>
